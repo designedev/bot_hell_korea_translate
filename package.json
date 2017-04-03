@@ -1,0 +1,15 @@
+{
+  "name": "hell_korean_office_language_translator",
+  "version": "1.0.0",
+  "description": "hell chosen office language translator",
+  "main": "translator.js",
+  "dependencies": {
+    "telegram-bot-api": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node translator.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
