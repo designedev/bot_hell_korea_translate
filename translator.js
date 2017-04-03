@@ -82,7 +82,7 @@ function check_quota(message) {
 	}
 	else {
 		work_count++;
-		console.log(`work count increased ( ${work_count} )`);
+		//console.log(`work count increased ( ${work_count} )`);
 		return true;
 	}
 }
@@ -90,7 +90,7 @@ function check_quota(message) {
 function reduce_quota() {
 	work_count --;
 	if(work_count <= 0) work_count == 0;
-	console.log(`work count decreased ( ${work_count} )`);
+	//console.log(`work count decreased ( ${work_count} )`);
 }
 
 
