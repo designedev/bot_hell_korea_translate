@@ -90,12 +90,25 @@ function translate(message) {
 		var translated_text = '';
 		var skipNext = false;
 		wordArr.forEach(function(word, index) {
-			switch(word) {
+			if(skipNext) {
+				skipNext = false;
+			}
+			else {
+				switch(word) {
 				case '친애하는':
-					translated_text += `내게 고용된 `;
+					translated_text += "내게 고용된 ";
 					break;
+				case '여러분':
+					if(word.length > index + 1 && word[index + 1] == '각자가') {
+						skipNext = true;
+						translated_text += "월급 별레들이 "
+					}
+					else {
+						translated_text += word + ' ';	
+					}
 				default:
 					translated_text += word + ' ';
+				}
 			}
 		});
 		send_msg(message.chat.id, translated_text);
