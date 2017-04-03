@@ -33,7 +33,7 @@ api.on('message', function(message) {
 		send_photo(message.chat.id);
 	}
 	else if (check_quota(message)) {
-		translate(message);
+		build(message);
 		reduce_quota();
 	}
 });
@@ -84,9 +84,9 @@ function send_photo(chat_id) {
 }
 
 
-function translate(message) {
-	if (message && message.text.startsWith('헬 ')) {
-		var wordArr = message.text.split(' ');
+function build(message) {
+	if (message && message.startsWith('헬 ')) {
+		var wordArr = message.split(' ');
 		var translated_text = '';
 		var skipNext = false;
 		wordArr.forEach(function(word, index) {
@@ -98,19 +98,124 @@ function translate(message) {
 				case '친애하는':
 					translated_text += "내게 고용된 ";
 					break;
-				case '여러분':
-					if(word.length > index + 1 && word[index + 1] == '각자가') {
+				case '우리는':
+					translated_text += "내 회사는 ";
+					break;
+				case '급변하는':
+					translated_text += "지랄맞은 ";
+					break;	
+				case '경제위기':
+					translated_text += "내 호주머니 사정 ";
+					break;	
+				case '주인공':
+					translated_text += "노비 ";
+					break;	
+				case '변화와':
+					translated_text += "괜히 일 만들지말고 하던거나 ";
+					break;	
+				case '혁신':
+					translated_text += "잘해라 ";
+					break;	
+				case '역동적으로':
+					translated_text += "주말에 등산 ";
+					break;	
+				case '열정적으로':
+					translated_text += "회식은 기본이 3차 ";
+					break;	
+				case '긍정적인':
+					translated_text += "지각하지 말고 ";
+					break;	
+				case '자세로':
+					translated_text += "지켜보고 있으니 ";
+					break;						
+				case '내일까지':
+					translated_text += "오늘 밤 새서 ";
+					break;	
+				case '간단하니까':
+					translated_text += "니가 해야겠어 ";
+					break;	
+				case '쉽잖아':
+					translated_text += "내일까지 내 책상 위에 ";
+					break;	
+				case '자네':
+					translated_text += "야임마 ";
+					break;																																																														
+				case '가족':
+					if(wordArr.length > index + 1 && wordArr[index + 1] == '여러분') {
 						skipNext = true;
 						translated_text += "월급 별레들이 "
 					}
 					else {
 						translated_text += word + ' ';	
 					}
+					break;
+				case '여러분':
+					if(wordArr.length > index + 1 && wordArr[index + 1] == '각자가') {
+						skipNext = true;
+						translated_text += "월급 별레들이 "
+					}
+					else {
+						translated_text += word + ' ';	
+					}
+					break;
+				case '새로운':
+					if(wordArr.length > index + 1 && wordArr[index + 1] == '기획안') {
+						skipNext = true;
+						translated_text += "기안자는 내 이름으로 "
+					}
+					else {
+						translated_text += word + ' ';	
+					}
+					break;
+				case '몸이':
+					if(wordArr.length > index + 1 && wordArr[index + 1] == '안좋네') {
+						skipNext = true;
+						translated_text += "홍삼같은거 한첩 다려와 "
+					}
+					else {
+						translated_text += word + ' ';	
+					}
+					break;
+				case '오늘':
+					if(wordArr.length > index + 1 && wordArr[index + 1] == '뭐해') {
+						skipNext = true;
+						translated_text += "이따 술 "
+					}
+					else {
+						translated_text += word + ' ';	
+					}
+					break;
+				case '주말에':
+					if(wordArr.length > index + 1 && wordArr[index + 1] == '뭐해') {
+						skipNext = true;
+						translated_text += "나랑 놀아줘 "
+					}
+					else {
+						translated_text += word + ' ';	
+					}
+					break;								
+				case '사람이':
+					if(wordArr.length > index + 1 && wordArr[index + 1] == '됐어') {
+						skipNext = true;
+						translated_text += "넌 내 비위를 잘 맞춰 "
+					}
+					else {
+						translated_text += word + ' ';	
+					}
+					break;								
+				case '다시':
+					if(wordArr.length > index + 1 && wordArr[index + 1] == '봤어') {
+						skipNext = true;
+						translated_text += "인사고과는 0이야 "
+					}
+					else {
+						translated_text += word + ' ';	
+					}
+					break;																					
 				default:
 					translated_text += word + ' ';
 				}
 			}
 		});
-		send_msg(message.chat.id, translated_text);
 	}
 }
