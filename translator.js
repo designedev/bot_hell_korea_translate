@@ -28,47 +28,49 @@ TELEGRAM MESSAGE DATA FORMAT...
 */
 
 api.on('message', function(message) {
-	console.log("bot load : " + work_count + "/" + MAX_WORK_COUNT);
-	if(message.text == '헬로비너스') {
+	if(message.text) {
+		console.log(`user : ${message.from.first_name} ${message.from.last_name} (${message.from.username}) : ${message.text} [${work_count}/${MAX_WORK_COUNT}]`);
+		if(message.text == '헬로비너스') {
 		send_photo(message.chat.id);
-	}
-	else if (message.text == '헬 도움') {
-		var help_text = `
-		== 헬조선 직장인말 번역기입니다. ==
-		사용법은 아래와 같습니다.
-		"헬 할말 쭉 쓰세요"
-		아래는 번역되는 문구들입니다.
+		}
+		else if (message.text == '헬 도움') {
+			var help_text = `
+			== 헬조선 직장인말 번역기입니다. ==
+			사용법은 아래와 같습니다.
+			"헬 할말 쭉 쓰세요"
+			아래는 번역되는 문구들입니다.
 
-		친애하는 = 내게 고용된
-		가족 여러분 = 월급 벌레들아
-		우리는 = 내 회사는
-		급변하는 = 지랄맞은
-		경제위기 = 내 호주머니 사정
-		여러분 각자가 = 월급 벌레들이
-		이 회사의 = 내 회사에
-		주인공 = 노비
-		변화와 = 괜히 일 만들지말고 하던거나
-		혁신 = 잘해라
-		역동적으로 = 주말에 등산
-		열정저으로 = 회식은 기본이 3차
-		긍정적인 = 지각하지 말고
-		자세로 = 지켜보고 있으니
-		내일까지 = 오늘 밤 새서 
-		간단하니까 = 니가 해야겠어
-		쉽잖아 = 내일아침까지 내 책상 위에
-		새로운 기획안 = 기안자는 내 이름으로
-		몸이 안좋네 = 홍삼같은거 한첩 다려와
-		오늘 뭐해 = 이따 술
-		주말에 뭐해 = 나랑 놀아줘
-		사람이 됐어 = 넌 내 비위를 잘 맞춰
-		자네 = 임마
-		다시 봤어 = 인사고과는 0이야 
-		`;
-		send_msg(message.chat.id,help_text);
-	}
-	else if (check_quota(message)) {
-		build(message);
-		reduce_quota();
+			친애하는 = 내게 고용된
+			가족 여러분 = 월급 벌레들아
+			우리는 = 내 회사는
+			급변하는 = 지랄맞은
+			경제위기 = 내 호주머니 사정
+			여러분 각자가 = 월급 벌레들이
+			이 회사의 = 내 회사에
+			주인공 = 노비
+			변화와 = 괜히 일 만들지말고 하던거나
+			혁신 = 잘해라
+			역동적으로 = 주말에 등산
+			열정저으로 = 회식은 기본이 3차
+			긍정적인 = 지각하지 말고
+			자세로 = 지켜보고 있으니
+			내일까지 = 오늘 밤 새서 
+			간단하니까 = 니가 해야겠어
+			쉽잖아 = 내일아침까지 내 책상 위에
+			새로운 기획안 = 기안자는 내 이름으로
+			몸이 안좋네 = 홍삼같은거 한첩 다려와
+			오늘 뭐해 = 이따 술
+			주말에 뭐해 = 나랑 놀아줘
+			사람이 됐어 = 넌 내 비위를 잘 맞춰
+			자네 = 임마
+			다시 봤어 = 인사고과는 0이야 
+			`;
+			send_msg(message.chat.id,help_text);
+		}
+		else if (check_quota(message)) {
+			build(message);
+			reduce_quota();
+		}
 	}
 });
 
