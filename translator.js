@@ -90,7 +90,7 @@ function build(message) {
 		var translated_text = '';
 		var skipNext = false;
 		wordArr.forEach(function(word, index) {
-			if(skipNext) {
+			if(index == 0 || skipNext) {
 				skipNext = false;
 			}
 			else {
