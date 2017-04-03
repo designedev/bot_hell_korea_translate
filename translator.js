@@ -85,8 +85,8 @@ function send_photo(chat_id) {
 
 
 function build(message) {
-	if (message && message.startsWith('헬 ')) {
-		var wordArr = message.split(' ');
+	if (message.text && message.text.startsWith('헬 ')) {
+		var wordArr = message.text.split(' ');
 		var translated_text = '';
 		var skipNext = false;
 		wordArr.forEach(function(word, index) {
@@ -217,5 +217,6 @@ function build(message) {
 				}
 			}
 		});
+		send_msg(message.chat.id, translated_text);
 	}
 }
