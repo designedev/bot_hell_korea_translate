@@ -88,10 +88,14 @@ function translate(message) {
 	if (message && message.text.startsWith('헬 ')) {
 		var wordArr = message.text.split(' ');
 		var translated_text = '';
+		var skipNext = false;
 		wordArr.forEach(function(word, index) {
-			if(index > 0) {
-				if(word == '친애하는')
-					translated_text += `내게 고용된`;
+			switch(word) {
+				case '친애하는':
+					translated_text += `내게 고용된 `;
+					break;
+				default:
+					translated_text += word + ' ';
 			}
 		});
 		send_msg(message.chat.id, translated_text);
